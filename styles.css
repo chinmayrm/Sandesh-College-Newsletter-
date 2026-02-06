@@ -242,7 +242,7 @@ img {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, rgba(30, 58, 138, 0.6), rgba(59, 130, 246, 0.5), rgba(6, 182, 212, 0.4));
+  background: linear-gradient(120deg, rgba(30, 58, 138, 0.4), rgba(59, 130, 246, 0.3), rgba(6, 182, 212, 0.2));
   z-index: 1;
 }
 
@@ -309,6 +309,49 @@ img {
 
 main section {
   padding: 4.5rem 5vw;
+}
+
+.editions,
+.about {
+  position: relative;
+  overflow: hidden;
+}
+
+.editions::before,
+.about::before {
+  content: '';
+  position: absolute;
+  inset: -50px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(147, 197, 253, 0.35), rgba(167, 139, 250, 0.3));
+  mask-image: url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png');
+  mask-size: cover;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  filter: url(#ethereal-filter) blur(2px);
+  opacity: 1;
+  z-index: 0;
+  animation: etherealShift 15s ease-in-out infinite;
+}
+
+@keyframes etherealShift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translate(3%, -3%) scale(1.05) rotate(2deg);
+  }
+  50% {
+    transform: translate(-3%, 3%) scale(0.95) rotate(-2deg);
+  }
+  75% {
+    transform: translate(3%, 3%) scale(1.03) rotate(1deg);
+  }
+}
+
+.editions > *,
+.about > * {
+  position: relative;
+  z-index: 1;
 }
 
 .section-header {

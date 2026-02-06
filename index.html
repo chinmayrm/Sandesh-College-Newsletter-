@@ -33,6 +33,42 @@
     </div>
   </header>
 
+  <svg style="position: absolute; width: 0; height: 0;">
+    <defs>
+      <filter id="ethereal-filter" x="-50%" y="-50%" width="200%" height="200%">
+        <feTurbulence 
+          result="turbulence" 
+          numOctaves="3" 
+          baseFrequency="0.002 0.003" 
+          seed="0" 
+          type="turbulence">
+          <animate 
+            attributeName="baseFrequency" 
+            values="0.002 0.003; 0.003 0.004; 0.002 0.003" 
+            dur="25s" 
+            repeatCount="indefinite" />
+        </feTurbulence>
+        <feColorMatrix 
+          in="turbulence" 
+          type="hueRotate" 
+          values="0">
+          <animate 
+            attributeName="values" 
+            from="0" 
+            to="360" 
+            dur="20s" 
+            repeatCount="indefinite" />
+        </feColorMatrix>
+        <feDisplacementMap 
+          in="SourceGraphic" 
+          in2="turbulence" 
+          scale="40" 
+          xChannelSelector="R" 
+          yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+
   <main>
     <section class="hero" id="home">
       <div class="hero-bg" role="img" aria-label="Campus image placeholder"></div>
@@ -188,6 +224,7 @@
     <div class="footer-bottom">© Basaveshwar Engineering College — Newsletter Portal</div>
   </footer>
 
+  <script src="flow-field.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

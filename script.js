@@ -243,3 +243,14 @@ if (flipbook) {
 singlePageQuery.addEventListener("change", updateLayoutMode);
 
 setupViewer();
+
+// Initialize flow field background on hero section
+if (document.querySelector('.hero')) {
+  const hero = document.querySelector('.hero');
+  new FlowFieldBackground(hero, {
+    color: '#ffffff',
+    trailOpacity: 0.05,
+    particleCount: 700,
+    speed: 1
+  });
+}
