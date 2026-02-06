@@ -53,6 +53,8 @@ const editions = {
 let currentEdition = null;
 let currentPage = 1;
 let isZoomed = false;
+const singlePageQuery = window.matchMedia("(max-width: 767px)");
+let isSinglePageView = singlePageQuery.matches;
 
 function getEditionFromQuery() {
   const params = new URLSearchParams(window.location.search);
@@ -60,12 +62,18 @@ function getEditionFromQuery() {
   return editions[key] || editions["jan-2026"];
 }
 
+function getMaxPage() {
+  if (!currentEdition) return 1;
+  if (isSinglePageView) return currentEdition.totalPages;
+  return currentEdition.totalPages % 2 === 0 ? currentEdition.totalPages - 1 : currentEdition.totalPages;
+}
+
 function updatePages() {
   if (!currentEdition || !pageLeft || !pageRight) return;
   const leftIndex = currentPage;
-  const rightIndex = currentPage + 1;
+  const rightIndex = isSinglePageView ? null : currentPage + 1;
   pageLeft.innerHTML = renderPageContent(leftIndex);
-  pageRight.innerHTML = renderPageContent(rightIndex);
+  pageRight.innerHTML = rightIndex ? renderPageContent(rightIndex) : "";
 
   pageIndicator.textContent = String(currentPage);
   pageTotal.textContent = String(currentEdition.totalPages);
@@ -76,6 +84,16 @@ function updatePages() {
     pageLeft.classList.remove("page-flip");
     pageRight.classList.remove("page-flip");
   }, 500);
+}
+
+function updateLayoutMode() {
+  isSinglePageView = singlePageQuery.matches;
+  const maxPage = getMaxPage();
+  if (!isSinglePageView && currentPage % 2 === 0) {
+    currentPage -= 1;
+  }
+  if (currentPage > maxPage) currentPage = maxPage;
+  updatePages();
 }
 
 function renderPageContent(pageNumber) {
@@ -110,14 +128,15 @@ function setupViewer() {
   buildThumbnails();
   setTimeout(() => {
     if (loadingSpinner) loadingSpinner.style.display = "none";
-    updatePages();
+    updateLayoutMode();
   }, 800);
 }
 
 if (prevPage) {
   prevPage.addEventListener("click", () => {
+    const step = isSinglePageView ? 1 : 2;
     if (currentPage > 1) {
-      currentPage -= 2;
+      currentPage -= step;
       if (currentPage < 1) currentPage = 1;
       updatePages();
     }
@@ -126,8 +145,10 @@ if (prevPage) {
 
 if (nextPage) {
   nextPage.addEventListener("click", () => {
-    if (currentPage < currentEdition.totalPages) {
-      currentPage += 2;
+    const step = isSinglePageView ? 1 : 2;
+    const maxPage = getMaxPage();
+    if (currentPage < maxPage) {
+      currentPage += step;
       updatePages();
     }
   });
@@ -218,5 +239,7 @@ if (flipbook) {
     }
   });
 }
+
+singlePageQuery.addEventListener("change", updateLayoutMode);
 
 setupViewer();

@@ -656,6 +656,7 @@ main section {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   overflow: hidden;
+  touch-action: pan-y;
 }
 
 .flipbook-wrapper:fullscreen {
@@ -892,15 +893,49 @@ main section {
     right: 1rem;
   }
 
+  .viewer-hero {
+    padding: 2rem 5vw 1rem;
+  }
+
+  .viewer-section {
+    padding: 1rem 4vw 2rem;
+  }
+
+  .thumbnail-panel {
+    display: none;
+  }
+
   .viewer-layout {
     grid-template-columns: 1fr;
   }
 
+  .flipbook-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 0.75rem;
+    height: calc(100vh - 180px);
+    height: calc(100svh - 180px);
+  }
+
+  .viewer-toolbar {
+    margin-bottom: 0.4rem;
+  }
+
   .flipbook {
     grid-template-columns: 1fr;
+    height: 100%;
+    min-height: 0;
+    flex: 1;
   }
 
   .page {
-    margin: 0.75rem;
+    margin: 0.5rem;
+    min-height: 0;
+    height: calc(100% - 1rem);
+  }
+
+  #pageRight {
+    display: none;
   }
 }
