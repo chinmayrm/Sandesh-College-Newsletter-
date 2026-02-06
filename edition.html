@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sandesh Flipbook Viewer | Basaveshwar Engineering College, Bagalkot</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <div class="brand">
+        <img src="LOGO.png" alt="College Logo" class="college-logo" />
+        <div class="brand-text">
+          <div class="college-name">Basaveshwar Engineering College, Bagalkot</div>
+          <div class="college-subtitle">Official College Newsletter Portal</div>
+        </div>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primaryNav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="primary-nav" id="primaryNav">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#editions">Newsletter Editions</a>
+        <a href="index.html#about">About Newsletter</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="viewer-hero">
+      <div class="viewer-hero-content">
+        <p class="hero-kicker">Sandesh Flipbook Viewer</p>
+        <h1 id="editionTitle">January 2026 Edition</h1>
+        <p>Interactive flipbook with swipe support, zoom, and fullscreen.</p>
+        <div class="viewer-actions">
+          <a class="btn ghost" href="index.html#editions">Back to Editions</a>
+          <button class="btn ghost" id="downloadBtn">Download PDF</button>
+          <button class="btn ghost" id="shareBtn">Share</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="viewer-section">
+      <div class="viewer-layout">
+        <aside class="thumbnail-panel">
+          <h3>Pages</h3>
+          <div class="thumbnail-list" id="thumbnailList"></div>
+        </aside>
+
+        <div class="flipbook-wrapper">
+          <div class="viewer-toolbar">
+            <button class="icon-btn" id="prevPage" aria-label="Previous page">◀</button>
+            <div class="page-indicator"><span id="pageIndicator">1</span> / <span id="pageTotal">12</span></div>
+            <button class="icon-btn" id="nextPage" aria-label="Next page">▶</button>
+            <div class="toolbar-spacer"></div>
+            <button class="icon-btn" id="zoomBtn" aria-label="Zoom">🔍</button>
+            <button class="icon-btn" id="fullscreenBtn" aria-label="Fullscreen">⛶</button>
+          </div>
+
+          <div class="flipbook" id="flipbook" aria-live="polite">
+            <div class="loading" id="loadingSpinner">
+              <div class="spinner"></div>
+              <span>Loading pages...</span>
+            </div>
+            <div class="page" id="pageLeft"></div>
+            <div class="page" id="pageRight"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <img src="LOGO.png" alt="College Logo" class="college-logo" />
+        <div class="footer-title">Basaveshwar Engineering College, Bagalkot</div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html#home">Home</a>
+        <a href="index.html#editions">Newsletter Editions</a>
+        <a href="index.html#about">Newsletter Policy</a>
+        <a href="index.html#editions">Archive Index</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>Email: newsletter@becbgk.edu.in</p>
+        <p>Address: College Campus, Bagalkot, Karnataka</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© Basaveshwar Engineering College — Newsletter Portal</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
